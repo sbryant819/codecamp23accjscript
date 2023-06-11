@@ -119,8 +119,6 @@ function play() {
     const selectCat = () => {
         let catagories = [ // Arrays are 0 (zero) based.  The fist entry is 0, the second is 1, the third is 2 and so on.
             "Tech Companies", // index 0
-            "Computers", // index  1
-            "Week of Code" // index 2  ... you could access this with array[index] which would look like catagories[2]
         ];
         const categoryName = document.getElementById("categoryName");
         categoryName.textContent = `The Category Is ${catagories[randomCategoryObject.category]}`;
@@ -160,61 +158,6 @@ function play() {
             word: "awesome inc",
             hint: "Helps People in Lexington Learn to Code",
             category: 0,
-        },
-        {
-            word: "javascript",
-            hint: "Web Programming Language",
-            category: 1,
-        },
-        {
-            word: "network",
-            hint: "When Computer are Linked Together",
-            category: 1,
-        },
-        {
-            word: "function",
-            hint: "A Reusable Chunk of Code",
-            category: 1,
-        },
-        {
-            word: "python",
-            hint: "Popular Programming Language, you don't have to be a Snake to Use",
-            category: 1,
-        },
-        {
-            word: "boolean",
-            hint: "True of False?",
-            category: 1,
-        },
-        {
-            word: 'variable',
-            hint: "This is what we Call a Value Stored in a Program",
-            category: 1,
-        },
-        {
-            word: "web development",
-            hint: "Type of Programming for Apps/Sites on the Internet",
-            category: 2,
-        },
-        {
-            word: "mobile app",
-            hint: "Type of Programming for Apps on Phones and Other Portable Devices",
-            category: 2,
-        },
-        {
-            word: "video games",
-            hint: "Mario, Zelda, Minecraft, Pokémon",
-            category: 2,
-        },
-        {
-            word: "awesome",
-            hint: "Start Something _________",
-            category: 2,
-        },
-        {
-            word: "code",
-            hint: "Short name for things Written in a Programming Language",
-            category: 2,
         }
     ]
 
