@@ -1,0 +1,260 @@
+// STUDENT VERSION
+const alphabet = [
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+];
+
+let wordObjectArray; // Array of topics
+let randomCategoryObject; // Selected category
+// STEP 1 - Create variable for word
+// STEP 2 - Crate varaible for guess
+// STEP 3 - Create empty array called guesses, we will later add each guess to
+let lives; // Lives
+let correctGuessCounter; // Count correct guesses
+let space; // Number of spaces in word '-'
+let gameOn; // When true, game is live and all button clicks will work, when false, hint and letter select is off.
+
+// Get elements
+const showLives = document.getElementById("myLives");
+const getHint = document.getElementById("hint");
+const showClue = document.getElementById("clue");
+const myButtons = document.getElementById("buttons");
+const reset = document.getElementById('reset');
+
+// STEP 4 - Init Several Variables at Once
+
+
+// Create alphabet buttons as ul (unordered list)
+function buttons() {
+    letters = document.createElement("ul");
+
+    for (let i = 0; i < alphabet.length; i++) {
+        letters.id = "alphabet";
+        letter = document.createElement("li");
+        letter.id = `letter ${alphabet[i]}`;
+        letter.textContent = alphabet[i];
+        check();
+        myButtons.appendChild(letters);
+        letters.appendChild(letter);
+    }
+};
+
+// STEP 5 - This Fucntion creates the guesses ul, What is wrong with it?
+const result() {
+    wordHolder = document.getElementById("hold");
+    correct = document.createElement("ul");
+
+    for (/* STEP 6 - Fill in the three expressions to loop through the word array */) {
+        correct.setAttribute("id", "my-word");
+        guess = document.createElement("li");
+        guess.setAttribute("class", "guess");
+        // console.log(word[i])
+        if (word[i] === "-") {
+            guess.textContent = "-";
+            space = 1;
+        }
+        if (word[i] === " ") {
+            guess.textContent = " ";
+            guess.classList.add('spacer')
+            space = 1;
+        } else {
+            guess.textContent = "_";
+        }
+
+        guesses.push(guess);
+        wordHolder.appendChild(correct);
+        correct.appendChild(guess);
+    };
+};
+
+// Show lives
+function comments() {
+    showLives.textContent = "You have " + lives + " lives";
+    myGuessBox = document.getElementById("guessBox");
+    myGuessBox.textContent = `${lives}`;
+    // STEP 7 - WRITE an IF Statment that runs the code below when you are out of lives.
+        myGuessBox.textContent = '☹';
+        showLives.textContent = "Game Over";
+        gameOn = false;
+    }
+    for (let i = 0; i < guesses.length; i++) {
+        if (correctGuessCounter + space === guesses.length) {
+            showLives.textContent = "You Win!";
+            myButtons.classList.add('hide')
+            getHint.classList.add('hide')
+            gameOn = false;
+        }
+    }
+};
+// OnClick Function
+function check() {
+
+    letter.onclick = function (event) {
+        let e = event.target
+        if (gameOn) {
+            guess = e.textContent;
+            e.setAttribute("class", "active");
+            e.onclick = null;
+            for (let i = 0; i < word.length; i++) {
+                // STEP 8 - WRITE IF STATEMENT TO SEE IF THE LETTER IN THE WORD MATCHES THE GUESS
+                    guesses[i].textContent = guess;
+                    // STEP 9 - INCREASE THE COUNTER FOR CORRECT GUESSES BY 1;
+                }
+            }
+            let j = word.indexOf(guess);
+            if (j === -1) {
+                lives -= 1;
+            }
+            comments();
+        };
+    };
+};
+
+// The Play function is called to start a new game.
+function play() { 
+    gameOn = true;
+    myButtons.classList.remove('hide');
+    getHint.classList.remove('hide');
+
+    // Select Category
+    const selectCat = () => {
+        let catagories = [ // Arrays are 0 (zero) based.  The fist entry is 0, the second is 1, the third is 2 and so on.
+            "Tech Companies", // index 0
+            "Computers", // index  1
+            "Week of Code" // index 2  ... you could access this with array[index] which would look like catagories[2]
+        ];
+        const categoryName = document.getElementById("categoryName");
+        categoryName.textContent = `The Category Is ${catagories[randomCategoryObject.category]}`;
+    };
+    const wordObjectArray = [
+        {
+            word: "apple",
+            hint: "Provides a lot of <strong>Jobs</strong> in Cupertino, CA",
+            category: 0,
+        },
+        {
+            word: "microsoft",
+            hint: "Makes Most Operating System in the World",
+            category: 0,
+        },
+        {
+            word: "amazon",
+            hint: "Started by Selling Books out of Garage in Seattle, not from the Brazilian Rain Forest",
+            category: 0,
+        },
+        {
+            word: "tesla",
+            hint: "This Car is Shocking, it doesn't Need Gas",
+            category: 0,
+        },
+        {
+            word: "google",
+            hint: "Use a Search Engine for Help with this One",
+            category: 0,
+        },
+        {
+            word: "meta",
+            hint: "Formally Know by the Name of their Most Popular Social Media Platform",
+            category: 0,
+        },
+        {
+            word: "awesome inc",
+            hint: "Helps People in Lexington Learn to Code",
+            category: 0,
+        },
+        {
+            word: "javascript",
+            hint: "Web Programming Language",
+            category: 1,
+        },
+        {
+            word: "network",
+            hint: "When Computer are Linked Together",
+            category: 1,
+        },
+        {
+            word: "function",
+            hint: "A Reusable Chunk of Code",
+            category: 1,
+        },
+        {
+            word: "python",
+            hint: "Popular Programming Language, you don't have to be a Snake to Use",
+            category: 1,
+        },
+        {
+            word: "boolean",
+            hint: "True of False?",
+            category: 1,
+        },
+        {
+            word: 'variable',
+            hint: "This is what we Call a Value Stored in a Program",
+            category: 1,
+        },
+        {
+            word: "web development",
+            hint: "Type of Programming for Apps/Sites on the Internet",
+            category: 2,
+        },
+        {
+            word: "mobile app",
+            hint: "Type of Programming for Apps on Phones and Other Portable Devices",
+            category: 2,
+        },
+        {
+            word: "video games",
+            hint: "Mario, Zelda, Minecraft, Pokémon",
+            category: 2,
+        },
+        {
+            word: "awesome",
+            hint: "Start Something _________",
+            category: 2,
+        },
+        {
+            word: "code",
+            hint: "Short name for things Written in a Programming Language",
+            category: 2,
+        }
+    ]
+
+    randomCategoryObject = wordObjectArray[Math.floor(Math.random() * wordObjectArray.length)];
+    word = randomCategoryObject.word;
+    buttons();
+
+    guesses = [];
+    lives = 10;
+    correctGuessCounter = 0;
+    space = 0;
+    result();
+    comments();
+    selectCat();
+};
+
+
+// Hint - This starts a new game.
+play();
+
+getHint.onclick = () => {
+    if (gameOn) {
+        showClue.innerHTML = `Clue: <em>${randomCategoryObject.hint}</em>`;
+    };
+};
+
+// Reset Button Click Function (Students can rewrite as an arrow function)
+function resetGame() {
+    correct.remove();
+    letters.remove();
+    showClue.textContent = "";
+//     STEP 10 - Call the function that starts a new game.
+};
+
+reset.onclick = resetGame
+
+// This adds an event listener to the entire document, listinging for a keypress.  If they keypress is A-Z, it will take the keyboard input instead of a mouse clickon the letter.
+
+document.addEventListener('keypress', (e) => {
+    if (alphabet.includes(e.key)) {
+        document.getElementById(`letter ${e.key}`).click();
+    }
+})
